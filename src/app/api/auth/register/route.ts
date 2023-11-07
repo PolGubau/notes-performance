@@ -37,9 +37,11 @@ export async function POST(request: Request) {
 
     // 3. Create user
 
-    type NewUser = Omit<User, "id" | "createdAt" | "updatedAt">;
-
-    const newUser: NewUser = {
+    const newUser: {
+      username: User["username"];
+      email: User["email"];
+      password: User["password"];
+    } = {
       username: data.username,
       email: data.email,
       password: hashPassword,

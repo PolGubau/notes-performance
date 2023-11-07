@@ -49,13 +49,14 @@ export const authOptions = {
           id: userFound.id.toString(),
           name: userFound.username,
           email: userFound.email,
+          image: userFound.avatar,
         };
       },
     }),
   ],
 
   pages: {
-    signIn: "/auth/login",
+    signIn: "/login",
   },
 };
 
