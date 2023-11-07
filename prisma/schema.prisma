@@ -11,26 +11,35 @@ datasource db {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  email         String   @unique
-  username      String   @unique
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String    @unique
   password      String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  CreatedTodos  Todo[]   @relation("creator")
-  AssignedTodos Todo[]   @relation("owner")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  public        Boolean   @default(true)
+  emailVerified DateTime?
+
+  CreatedTodos  Todo[] @relation("creator")
+  AssignedTodos Todo[] @relation("owner")
 }
 
 model Todo {
-  id        Int    @id @default(autoincrement())
-  title     String
-  content   String @default("")
-  creatorId Int
-  ownerId   Int
+  id          String    @id @default(cuid())
+  title       String
+  content     String    @default("")
+  creatorId   String
+  ownerId     String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
 
-  completed Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  status Int @default(0) // 0: todo, 1: doing, 2: done 
+
+  permission Int      @default(0) // 0: read, 1: write, 2: admin
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  endAt DateTime?
 
   creator User @relation("creator", fields: [creatorId], references: [id])
   owner   User @relation("owner", fields: [ownerId], references: [id])
