@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { Routes } from "@/constants/routes";
 
 const NavBar = ({ hasLinks = true }: { hasLinks?: boolean }) => {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ const NavBar = ({ hasLinks = true }: { hasLinks?: boolean }) => {
           <Link href="https://polgubau.com" className="text-neutral-700">
             Pol/
           </Link>
-          <Link href="/" className="text-green-500">
+          <Link href={Routes.home} className="text-green-500">
             Notes
           </Link>
         </span>
@@ -23,7 +24,7 @@ const NavBar = ({ hasLinks = true }: { hasLinks?: boolean }) => {
         {hasLinks && (
           <div className="bg-transparent hover:bg-green-300 p-3 rounded-full cursor-pointer transition-all active:ring-2 active:ring-green-300 active:rign-green-500 active:outline-none active:ring-offset-2 active:ring-offset-green-50 flex gap-2 items-center">
             {pathname === "/settings" ? (
-              <Link href="/">
+              <Link href={Routes.home}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -35,7 +36,7 @@ const NavBar = ({ hasLinks = true }: { hasLinks?: boolean }) => {
                 </svg>
               </Link>
             ) : (
-              <Link href="/settings">
+              <Link href={Routes.settings}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

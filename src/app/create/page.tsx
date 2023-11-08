@@ -5,11 +5,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { handleCreateTodo } from "./actions";
 import { useRouter } from "next/navigation";
 import { CreateTodoFields, createTodoSchema } from "./schemas";
+import Loading from "@/components/Loading";
+import { Routes } from "@/constants/routes";
 
 export default function Home() {
   const router = useRouter();
 
-  const form = useForm<CreateTodoFields>({
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<CreateTodoFields>({
     resolver: zodResolver(createTodoSchema),
     defaultValues: {
       title: "",
@@ -21,16 +28,19 @@ export default function Home() {
     const newtodo = await handleCreateTodo(data);
     console.log(newtodo);
     if (newtodo.id) {
-      form.reset();
-      router.push(`/todo/${newtodo.id}`);
+      router.push(Routes.home);
+      reset();
     }
   };
 
   return (
-    <main className="flex flex-col w-full h-full">
+    <main className="flex flex-col w-full h-full relative">
+      {isSubmitting && <Loading />}
       <form
-        className="flex justify-center gap-6  w-full h-full  flex-col   "
-        onSubmit={form.handleSubmit((data) => onSubmit(data))}
+        className={`flex justify-center gap-6  w-full h-full  flex-col  ${
+          isSubmitting ? "opacity-50 " : ""
+        } `}
+        onSubmit={handleSubmit((data) => onSubmit(data))}
       >
         <input
           className={`text-4xl font-bold  bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent   w-full h-full resize-none `}
@@ -38,7 +48,7 @@ export default function Home() {
           required
           minLength={1}
           maxLength={40}
-          {...form.register("title")}
+          {...register("title")}
           autoComplete="new-title"
           placeholder="Buy her flowers 🌹"
         />
@@ -47,7 +57,7 @@ export default function Home() {
           minLength={1}
           maxLength={1200}
           id="title"
-          {...form.register("content")}
+          {...register("content")}
           autoComplete="off"
           required
           placeholder="Steps to reach the goal: 1. Go to the flower shop..."

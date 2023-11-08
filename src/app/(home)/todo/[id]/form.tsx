@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { handleEditTodo } from "./actions";
 import { Todo } from "@prisma/client";
 import { EditableTodoFields } from "./schemas";
