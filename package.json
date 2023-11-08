@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@editorjs/code": "^2.8.0",
+    "@editorjs/editorjs": "^2.28.2",
+    "@editorjs/paragraph": "^2.11.3",
+    "@hookform/resolvers": "^3.3.2",
+    "@mdxeditor/editor": "^1.8.1",
     "@prisma/client": "^5.5.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -17,7 +22,8 @@
     "pol-ui": "^1.0.95",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.48.2"
+    "react-hook-form": "^7.48.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import db from "@/libs/db";
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -24,7 +25,8 @@ export const authOptions = {
           password: credentials?.password,
         };
 
-        if (!creds.email || !creds.password) throw new Error("No creds");
+        if (!creds.email || !creds.password)
+          throw new Error("No credentials provided");
 
         const userFound = await db.user.findUnique({
           where: {
@@ -45,15 +47,51 @@ export const authOptions = {
           throw new Error("Password is incorrect");
         }
 
-        return {
-          id: userFound.id.toString(),
+        const entireUser: {
+          id: string;
+          name: string;
+          email: string;
+          image: string | null;
+        } = {
+          id: userFound.id,
           name: userFound.username,
           email: userFound.email,
           image: userFound.avatar,
         };
+        return entireUser;
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }: any) => {
+      const user: any = {
+        id: token.id as number,
+        name: token.name as string,
+        email: token.email as string,
+        image: token.image as string,
+      };
+
+      const sessionObj = { ...session, user };
+      return sessionObj;
+    },
+    jwt: ({ token, user }: any) => {
+      if (user) {
+        const u = user as unknown as {
+          id: number;
+          name: string;
+          email: string;
+          image: string;
+        };
+        return {
+          name: u.name,
+          id: u.id,
+          email: u.email,
+          image: u.image,
+        };
+      }
+      return token;
+    },
+  },
 
   pages: {
     signIn: "/login",

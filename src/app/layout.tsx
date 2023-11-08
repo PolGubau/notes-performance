@@ -6,7 +6,10 @@ import NavBar from "@/components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pol/Notes",
+  title: {
+    default: "Pol/Notes",
+    template: "%s - Pol/Notes",
+  },
   description: "A simple note taking app with sharing option",
 };
 
@@ -18,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-green-50 flex items-center flex-col w-full min-h-screen`}
+        className={`${inter.className} bg-green-50 flex items-center flex-col w-full h-screen `}
       >
         <NavBar />
-        {children}
+        <div className="mt-20  h-full p-4 md:p-8 xl:p-16 w-full flex justify-center">
+          {children}
+        </div>
       </body>
     </html>
   );

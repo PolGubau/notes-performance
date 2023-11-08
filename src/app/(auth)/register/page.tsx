@@ -34,9 +34,9 @@ export default function RegisterPage() {
     }
   });
 
-  const inputStyle = `px-4 py-3   rounded-lg text bg-green-200  focus:outline-none focus:ring-2 focus:ring-green-600 text-green-950 placeholder-green-600 transition-all focus:ring-offset-2 focus:ring-offset-green-50 focus:border-transparent`;
+  const inputStyle = `px-4 py-3 rounded-lg text bg-green-200  focus:outline-none focus:ring-2 focus:ring-green-600 text-green-950 placeholder-green-600 transition-all focus:ring-offset-2 focus:ring-offset-green-50 focus:border-transparent`;
   return (
-    <div className="relative">
+    <div className="relative w-full px-8">
       {isSubmitting && (
         <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
           <svg

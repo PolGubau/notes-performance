@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 export default function RegisterPage() {
   const router = useRouter();
   const {
@@ -12,6 +13,8 @@ export default function RegisterPage() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const [generalError, setGeneralError] = useState("");
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -27,7 +30,7 @@ export default function RegisterPage() {
         router.refresh();
         return;
       }
-      alert(res?.error);
+      setGeneralError(res?.error);
       return;
     } catch (error: any) {
       console.log(error);
@@ -36,7 +39,7 @@ export default function RegisterPage() {
 
   const inputStyle = `px-4 py-3   rounded-lg text bg-green-200  focus:outline-none focus:ring-2 focus:ring-green-600 text-green-950 placeholder-green-600 transition-all focus:ring-offset-2 focus:ring-offset-green-50 focus:border-transparent`;
   return (
-    <div className="relative">
+    <div className="relative w-full ">
       {isSubmitting && (
         <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
           <svg
@@ -63,6 +66,12 @@ export default function RegisterPage() {
           isSubmitting && "opacity-40"
         }`}
       >
+        {generalError && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative text-center md:text-left gap-2 flex flex-col md:flex-row">
+            <strong className="font-bold">Error!</strong>
+            <span className="">{generalError}</span>
+          </div>
+        )}
         <form
           className="flex flex-col justify-center gap-6 max-w-md w-full"
           onSubmit={onSubmit}
