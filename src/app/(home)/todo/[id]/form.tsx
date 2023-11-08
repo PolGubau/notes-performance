@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { EditableTodoFields, createTodoSchema } from "./page";
+import { EditableTodoFields, editableTodoSchema } from "./page";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { handleEditTodo } from "./actions";
 import { Todo } from "@prisma/client";
@@ -12,7 +12,7 @@ const Form = ({ todo }: { todo: Todo }) => {
   const router = useRouter();
 
   const form = useForm<EditableTodoFields>({
-    resolver: zodResolver(createTodoSchema),
+    resolver: zodResolver(editableTodoSchema),
     defaultValues: {
       title: todo.title,
       content: todo.content,
@@ -32,7 +32,7 @@ const Form = ({ todo }: { todo: Todo }) => {
 
   return (
     <form
-      className="flex justify-center gap-6  w-full h-full  flex-col   bg-green-500"
+      className="flex justify-center gap-6  w-full h-full  flex-col    "
       onSubmit={form.handleSubmit((data) => onSubmit(data))}
     >
       <input

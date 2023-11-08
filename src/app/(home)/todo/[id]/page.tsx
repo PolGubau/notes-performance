@@ -2,7 +2,7 @@ import { z } from "zod";
 import Form from "./form";
 import prisma from "@/libs/db";
 
-export const createTodoSchema = z.object({
+export const editableTodoSchema = z.object({
   id: z.string().cuid(),
   title: z.string().min(1).max(40),
   content: z.string().min(1).max(1200),
@@ -16,7 +16,7 @@ export const createTodoSchema = z.object({
   permission: z.number(),
   endAt: z.date().nullable(),
 });
-export type EditableTodoFields = z.infer<typeof createTodoSchema>;
+export type EditableTodoFields = z.infer<typeof editableTodoSchema>;
 
 export default async function Home({
   params,
