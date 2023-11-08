@@ -4,7 +4,6 @@ import prisma from "@/libs/db";
 import { Todo } from "@prisma/client";
 import { EditableTodoFields } from "./schemas";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function handleEditTodo(data: EditableTodoFields) {
   const res: Todo = await prisma.todo.update({
@@ -18,7 +17,15 @@ export async function handleEditTodo(data: EditableTodoFields) {
   });
 
   revalidatePath(`/`);
-  redirect(`/`);
-
   return res;
 }
+export const handleDeleteTodo = async (id: string) => {
+  const deleted = prisma.todo.delete({
+    where: {
+      id,
+    },
+  });
+  revalidatePath(`/`);
+
+  return deleted;
+};

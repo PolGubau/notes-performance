@@ -1,5 +1,5 @@
-import Form from "../../../create/form";
 import prisma from "@/libs/db";
+import EditForm from "./form";
 
 export default async function Home({
   params,
@@ -15,7 +15,7 @@ export default async function Home({
   });
   return (
     <main className="flex flex-col w-full h-full">
-      {todo ? <Form todo={todo} /> : <div>Todo not found</div>}
+      {todo ? <EditForm todo={todo} /> : <div>Todo not found</div>}
     </main>
   );
 }
