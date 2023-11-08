@@ -80,7 +80,6 @@ const Form = ({ todo }: { todo: Todo }) => {
             className="  disabled:bg-green-400   rounded-full text-lg p-4 focus:outline-none  transition-all text-white
         bg-green-700 hover:bg-green-500 focus:bg-green-500 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-green-50
         "
-            type="submit"
           >
             D
           </button>
