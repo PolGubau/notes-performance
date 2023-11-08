@@ -2,7 +2,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/libs/db";
 import { Todo } from "@prisma/client";
 import { getServerSession } from "next-auth";
-import Link from "next/link";
 import React from "react";
 import TodoItem from "./TodoItem";
 

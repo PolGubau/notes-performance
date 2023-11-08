@@ -2,12 +2,14 @@ import Link from "next/link";
 import { Suspense } from "react";
 import TodoList from "@/components/TodoList";
 import Loading from "@/components/Loading";
+import { Routes } from "@/constants/routes";
 
 export default async function Home() {
   return (
     <main className="flex flex-col gap-6 pb-16 ">
       <Link
-        href="/create"
+        autoFocus
+        href={Routes.create}
         className="mb-4 bg-green-300 w-fit px-4 py-2 rounded-full hover:brightness-75 transition-all focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 flex gap-1 items-center"
       >
         <svg

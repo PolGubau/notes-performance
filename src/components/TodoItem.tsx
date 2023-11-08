@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Loading from "./Loading";
+import { motion } from "framer-motion";
 
 const TodoItem = ({ id }: { id: string }) => {
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -19,7 +20,7 @@ const TodoItem = ({ id }: { id: string }) => {
   };
 
   return (
-    <div className="flex gap-2 items-center justify-end">
+    <motion.div className="flex gap-2 items-center justify-end">
       <Link
         href={`/todo/${id}`}
         className="w-8 h-8 rounded-xl focus:outline-none  transition-all text-white flex justify-center items-center
@@ -60,7 +61,7 @@ const TodoItem = ({ id }: { id: string }) => {
           </svg>
         )}
       </button>
-    </div>
+    </motion.div>
   );
 };
 
