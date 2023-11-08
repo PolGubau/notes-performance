@@ -42,12 +42,15 @@ export default async function TodoList() {
       {notes.map((todo: Todo) => (
         <li
           key={todo.id}
-          className="grid  gap-4 max-w-screen-xl w-full rounded-2xl bg-green-200 p-4 md:p-8 group focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 transition-all grid-cols-[3fr,1fr]"
+          className="grid gap-4 max-w-screen-xl w-full rounded-2xl bg-green-200 p-4 md:p-8 group focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 transition-all grid-cols-[3fr,1fr]"
         >
-          <h2 className="text-xl font-bold ">{todo.title}</h2>
+          <h2 className="text-2xl font-bold truncate">{todo.title}</h2>
           <div className="flex gap-2 items-center justify-end">
-            <p className="hidden md:flex"> {parseDate(todo.updatedAt)}</p>
-            <p className="md:hidden flex">
+            <p className="hidden md:flex truncate">
+              {" "}
+              {parseDate(todo.updatedAt)}
+            </p>
+            <p className="md:hidden flex truncate ">
               {" "}
               {parseDateMinimal(todo.updatedAt)}
             </p>
