@@ -1,8 +1,21 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/libs/db";
+import { Todo } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
+
+export const parseDate = (date: Date) => {
+  const d = new Date(date);
+  // to english format with long month
+  return d.toLocaleString("en-US", {
+    month: "numeric",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+};
 
 export default async function TodoList() {
   const session = await getServerSession(authOptions);
@@ -11,10 +24,13 @@ export default async function TodoList() {
     where: {
       ownerId: session?.user?.id,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
   });
   return (
-    <ul className="flex flex-col gap-4   max-w-screen-xl w-full divide-y">
-      {notes.map((todo: any) => (
+    <ul className="flex flex-col gap-4 max-w-screen-xl w-full ">
+      {notes.map((todo: Todo) => (
         <Link
           href={`/todo/${todo.id}`}
           key={todo.id}
@@ -22,6 +38,7 @@ export default async function TodoList() {
         >
           <header className="flex justify-between items-center">
             <h2 className="text-xl font-bold">{todo.title}</h2>
+            <p> {parseDate(todo.updatedAt)}</p>
           </header>
           <p className="truncate">{todo.content}</p>
         </Link>

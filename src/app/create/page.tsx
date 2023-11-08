@@ -43,7 +43,7 @@ export default function Home() {
         onSubmit={handleSubmit((data) => onSubmit(data))}
       >
         <input
-          className={`text-4xl font-bold  bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent   w-full h-full resize-none `}
+          className={` p-2 rounded-xl text-4xl font-bold  bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent   w-full h-full resize-none `}
           id="title"
           required
           minLength={1}
@@ -53,7 +53,7 @@ export default function Home() {
           placeholder="Buy her flowers 🌹"
         />
         <textarea
-          className={`bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent w-full h-full resize-none text-lg font-medium  `}
+          className={`p-2 rounded-xl  bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent w-full h-full resize-none text-lg font-medium  `}
           minLength={1}
           maxLength={1200}
           id="title"

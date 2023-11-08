@@ -1,4 +1,4 @@
-import Form from "./form";
+import Form from "../../../create/form";
 import prisma from "@/libs/db";
 
 export default async function Home({

@@ -3,14 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Routes } from "@/constants/routes";
 
 const NavBar = ({ hasLinks = true }: { hasLinks?: boolean }) => {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full justify-center flex fixed top-0 left-0 h-20 items-center">
+    <nav className="w-full justify-center flex fixed top-0 left-0 h-20 items-center bg-green-100 z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between px-4 md:px-8 xl:px-16 w-full">
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
           <Link href="https://polgubau.com" className="text-neutral-700">

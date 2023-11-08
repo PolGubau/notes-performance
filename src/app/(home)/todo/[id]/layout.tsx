@@ -11,7 +11,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-col p-8 md:p-16 xl:p-24 max-w-screen-xl w-full h-full">
+    <div className="flex flex-col max-w-screen-xl w-full h-full">
       {children}
     </div>
   );
