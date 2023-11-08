@@ -23,10 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-green-100 flex items-center flex-col w-full h-screen `}
       >
-        <NavBar />
-        <div className="mt-20  h-full p-4 md:p-8 xl:p-16 w-full flex justify-center">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import { NavBar } from "@/components";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Notes",
+  title: "Settings",
   description: "A simple note taking app with sharing option",
 };
 
