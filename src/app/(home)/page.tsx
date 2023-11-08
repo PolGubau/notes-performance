@@ -1,18 +1,9 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import prisma from "@/libs/db";
 import Link from "next/link";
+import { Suspense } from "react";
+import TodoList from "@/components/TodoList";
+import Loading from "@/components/Loading";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
-
-  const notes = await prisma.todo.findMany({
-    where: {
-      ownerId: session?.user?.id,
-    },
-  });
-  console.log(notes);
-
   return (
     <main className="flex flex-col gap-6">
       <Link
@@ -35,20 +26,9 @@ export default async function Home() {
         </svg>
         Create a new note
       </Link>
-      <ul className="flex flex-col gap-4   max-w-screen-xl w-full divide-y">
-        {notes.map((todo: any) => (
-          <Link
-            href={`/todo/${todo.id}`}
-            key={todo.id}
-            className="flex flex-col gap-4 max-w-screen-xl w-full rounded-2xl bg-green-200 p-4 md:p-8 group hover:brightness-90 focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 transition-all"
-          >
-            <header className="flex justify-between items-center">
-              <h2 className="text-xl font-bold">{todo.title}</h2>
-            </header>
-            <p className="truncate">{todo.content}</p>
-          </Link>
-        ))}
-      </ul>
+      <Suspense fallback={<Loading />}>
+        <TodoList />
+      </Suspense>
     </main>
   );
 }

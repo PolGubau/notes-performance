@@ -2,12 +2,9 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  CreateTodoFields,
-  createTodoSchema,
-  handleCreateTodo,
-} from "./actions";
+import { handleCreateTodo } from "./actions";
 import { useRouter } from "next/navigation";
+import { CreateTodoFields, createTodoSchema } from "./schemas";
 
 export default function Home() {
   const router = useRouter();

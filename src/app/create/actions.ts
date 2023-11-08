@@ -1,14 +1,9 @@
 "use server";
-import { z } from "zod";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import prisma from "@/libs/db";
-export const createTodoSchema = z.object({
-  title: z.string().min(1).max(40),
-  content: z.string().min(1).max(1200),
-});
-export type CreateTodoFields = z.infer<typeof createTodoSchema>;
+import { CreateTodoFields } from "./schemas";
 
 export async function handleCreateTodo(data: CreateTodoFields) {
   const session = await getServerSession(authOptions);
