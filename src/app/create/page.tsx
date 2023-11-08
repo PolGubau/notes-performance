@@ -1,15 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { handleCreateTodo } from "./actions";
+import {
+  CreateTodoFields,
+  createTodoSchema,
+  handleCreateTodo,
+} from "./actions";
 import { useRouter } from "next/navigation";
-export const createTodoSchema = z.object({
-  title: z.string().min(1).max(40),
-  content: z.string().min(1).max(1200),
-});
-export type CreateTodoFields = z.infer<typeof createTodoSchema>;
 
 export default function Home() {
   const router = useRouter();
