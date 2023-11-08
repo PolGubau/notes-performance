@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import prisma from "@/libs/db";
 import { CreateTodoFields } from "./schemas";
+import { revalidatePath } from "next/cache";
 
 export async function handleCreateTodo(data: CreateTodoFields) {
   const session = await getServerSession(authOptions);
@@ -20,6 +21,6 @@ export async function handleCreateTodo(data: CreateTodoFields) {
       ownerId: userId,
     },
   });
-
+  revalidatePath(`/`);
   return res;
 }

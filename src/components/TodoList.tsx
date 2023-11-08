@@ -4,16 +4,25 @@ import { Todo } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import React from "react";
+import TodoItem from "./TodoItem";
 
 export const parseDate = (date: Date) => {
   const d = new Date(date);
-  // to english format with long month
   return d.toLocaleString("en-US", {
     month: "numeric",
     day: "numeric",
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
+  });
+};
+
+export const parseDateMinimal = (date: Date) => {
+  const d = new Date(date);
+  return d.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 };
 
@@ -28,20 +37,25 @@ export default async function TodoList() {
       updatedAt: "desc",
     },
   });
+
   return (
     <ul className="flex flex-col gap-4 max-w-screen-xl w-full ">
       {notes.map((todo: Todo) => (
-        <Link
-          href={`/todo/${todo.id}`}
+        <li
           key={todo.id}
-          className="flex flex-col gap-4 max-w-screen-xl w-full rounded-2xl bg-green-200 p-4 md:p-8 group hover:brightness-90 focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 transition-all"
+          className="grid  gap-4 max-w-screen-xl w-full rounded-2xl bg-green-200 p-4 md:p-8 group focus:ring-2 focus:ring-green-300 focus:rign-green-500 focus:outline-none focus:ring-offset-2 focus:ring-offset-green-50 transition-all grid-cols-[3fr,1fr]"
         >
-          <header className="flex justify-between items-center">
-            <h2 className="text-xl font-bold">{todo.title}</h2>
-            <p> {parseDate(todo.updatedAt)}</p>
-          </header>
+          <h2 className="text-xl font-bold ">{todo.title}</h2>
+          <div className="flex gap-2 items-center justify-end">
+            <p className="hidden md:flex"> {parseDate(todo.updatedAt)}</p>
+            <p className="md:hidden flex">
+              {" "}
+              {parseDateMinimal(todo.updatedAt)}
+            </p>
+          </div>
           <p className="truncate">{todo.content}</p>
-        </Link>
+          <TodoItem id={todo.id} />
+        </li>
       ))}
     </ul>
   );
