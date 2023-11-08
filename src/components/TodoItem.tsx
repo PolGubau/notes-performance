@@ -24,7 +24,7 @@ const TodoItem = ({ id }: { id: string }) => {
       <Link
         href={`/todo/${id}`}
         className="w-8 h-8 rounded-xl focus:outline-none  transition-all text-white flex justify-center items-center
-        bg-green-700 hover:bg-green-500 focus:bg-green-500 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-green-50
+        bg-green-700 hover:bg-green-500 focus:bg-green-500 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-green-200
         "
       >
         <svg
@@ -39,7 +39,7 @@ const TodoItem = ({ id }: { id: string }) => {
       <button
         onClick={() => onDelete(id)}
         className="w-8 h-8 rounded-xl focus:outline-none  transition-all text-white flex justify-center items-center
-        bg-red-700 hover:bg-red-500 focus:bg-red-500 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-red-50
+        bg-red-700 hover:bg-red-500 focus:bg-red-500 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-green-200
         "
       >
         {isDeleting ? (

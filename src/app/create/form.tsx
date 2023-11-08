@@ -37,7 +37,7 @@ const CreateForm = () => {
     >
       <input
         autoFocus
-        className={` p-2 rounded-xl text-4xl font-bold  bg-transparent text-green-800  transition-all focus:outline-none focus:border-transparent active:border-transparent placeholder:text-green-700 placeholder:text-opacity-40  w-full h-full resize-none `}
+        className={` p-2 rounded-xl text-4xl font-bold  bg-transparent text-green-800  transition-all focus:outline-none focus:border-transparent active:border-transparent placeholder:text-green-700 placeholder:text-opacity-40  w-full h-fit resize-none `}
         id="title"
         required
         minLength={1}

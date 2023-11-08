@@ -25,17 +25,8 @@ export default function Home() {
     },
   });
 
-  const onSubmit = async (data: CreateTodoFields) => {
-    const newtodo = await handleCreateTodo(data);
-    console.log(newtodo);
-    if (newtodo.id) {
-      router.push(Routes.home);
-      reset();
-    }
-  };
-
   return (
-    <main className="flex flex-col w-full h-full relative">
+    <main className="flex flex-col w-full h-full relative  ">
       {isSubmitting && <Loading />}
       <CreateForm />
     </main>

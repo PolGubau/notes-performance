@@ -46,7 +46,7 @@ const EditForm = ({ todo }: { todo: Todo }) => {
         })}
       >
         <input
-          className={`text-4xl font-bold  bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent   w-full h-fit resize-none `}
+          className={` p-2 rounded-xl text-4xl font-bold  bg-transparent text-green-800  transition-all focus:outline-none focus:border-transparent active:border-transparent placeholder:text-green-700 placeholder:text-opacity-40  w-full h-fit resize-none `}
           id="title"
           required
           defaultValue={todo.title}
@@ -61,7 +61,7 @@ const EditForm = ({ todo }: { todo: Todo }) => {
           placeholder="Buy her flowers 🌹"
         />
         <textarea
-          className={`bg-transparent text-green-900  transition-all focus:outline-none focus:border-transparent active:border-transparent w-full h-full resize-none text-lg font-medium  `}
+          className={`p-2 rounded-xl  bg-transparent text-green-700 placeholder:text-opacity-40 placeholder:text-green-600  transition-all focus:outline-none focus:border-transparent active:border-transparent w-full h-full resize-none text-lg font-medium  `}
           minLength={1}
           maxLength={1200}
           defaultValue={todo.content}
