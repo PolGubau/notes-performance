@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const NavBar = () => {
   const pathname = usePathname();
@@ -19,7 +20,7 @@ const NavBar = () => {
           </Link>
         </span>
 
-        <div className="bg-transparent hover:bg-[#22c55e44] p-3 rounded-full hover:brightness-75 transition-all active:ring-2 active:ring-green-300 active:rign-green-500 active:outline-none active:ring-offset-2 active:ring-offset-green-50 flex gap-2 items-center">
+        <div className="bg-transparent hover:bg-green-300 p-3 rounded-full cursor-pointer transition-all active:ring-2 active:ring-green-300 active:rign-green-500 active:outline-none active:ring-offset-2 active:ring-offset-green-50 flex gap-2 items-center">
           {pathname === "/settings" ? (
             <Link href="/">
               <svg
